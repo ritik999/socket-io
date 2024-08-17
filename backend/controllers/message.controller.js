@@ -24,7 +24,8 @@ export const sendMessage=async(req,res)=>{
         if(storeMessage){
             conversation.message.push(storeMessage._id);
         }
-        await conversation.save();
+        // await conversation.save();
+        await Promise.all([conversation.save()]);
         res.status(201).json(storeMessage)
     } catch (error) {
         console.log(error.message);
